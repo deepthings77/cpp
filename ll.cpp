@@ -35,8 +35,17 @@ int main()
                 postordertrivaersal.push(a * b);
             if (postorder == "/")
                 postordertrivaersal.push(b / a);
-            if (postorder == "^")
-                postordertrivaersal.push(b^a);
+             else if (postorder == "/")
+            {
+                if (a == 0)
+                {
+                    cout << "Error: Division by zero" << endl;
+                    return 1;
+                }
+                postordertrivaersal.push(b / a);
+            }
+             else if (postorder == "^")
+                postordertrivaersal.push(pow(b, a));
         }
         else
         {
