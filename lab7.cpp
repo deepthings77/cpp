@@ -2,29 +2,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class TreeNode {
+class TreeNode
+{
 public:
     int data;
     TreeNode *left;
     TreeNode *right;
-    TreeNode() {
+    TreeNode()
+    {
         left = nullptr;
         right = nullptr;
     }
-    TreeNode(int val) { 
-        data = val; 
+    TreeNode(int val)
+    {
+        data = val;
         left = nullptr;
         right = nullptr;
     }
 };
 
-
 void preorder(TreeNode *node);
 void postorder(TreeNode *node);
 void inorder(TreeNode *node);
 
-void preorder(TreeNode *node) {
-    if (node == nullptr) {
+void preorder(TreeNode *node)
+{
+    if (node == nullptr)
+    {
         return;
     }
     cout << node->data << " ";
@@ -32,8 +36,10 @@ void preorder(TreeNode *node) {
     preorder(node->right);
 }
 
-void postorder(TreeNode *node) {
-    if (node == nullptr) {
+void postorder(TreeNode *node)
+{
+    if (node == nullptr)
+    {
         return;
     }
     postorder(node->left);
@@ -41,8 +47,10 @@ void postorder(TreeNode *node) {
     cout << node->data << " ";
 }
 
-void inorder(TreeNode *node) {
-    if (node == nullptr) {
+void inorder(TreeNode *node)
+{
+    if (node == nullptr)
+    {
         return;
     }
     inorder(node->left);
@@ -50,8 +58,11 @@ void inorder(TreeNode *node) {
     inorder(node->right);
 }
 
-int main() {
-    TreeNode *root = nullptr; 
+int main()
+{
+    cout << "DEEPAK KUMAWAT" << endl
+         << "22BCS034" << endl;
+    TreeNode *root = nullptr;
 
     cout << "Enter root: ";
     int rootVal;
@@ -60,7 +71,8 @@ int main() {
 
     root = new TreeNode(rootVal);
 
-    while (true) {
+    while (true)
+    {
         int val;
         cout << "1: Enter Node" << endl;
         cout << "2: Preorder" << endl;
@@ -71,52 +83,70 @@ int main() {
         cin >> val;
         cout << endl;
 
-        switch (val) {
-            case 1: {
-                int newVal;
-                cout << "Enter value: ";
-                cin >> newVal;
-                cout << endl;
+        switch (val)
+        {
+        case 1:
+        {
+            int newVal;
+            cout << "Enter value: ";
+            cin >> newVal;
+            cout << endl;
 
-                TreeNode *newNode = new TreeNode(newVal); 
+            TreeNode *newNode = new TreeNode(newVal);
 
-                TreeNode *temp = root;
-                while (true) {
-                    if (newNode->data > temp->data) {
-                        if (temp->right == nullptr) {
-                            temp->right = newNode;
-                            break;
-                        } else {
-                            temp = temp->right;
-                        }
-                    } else {
-                        if (temp->left == nullptr) {
-                            temp->left = newNode;
-                            break;
-                        } else {
-                            temp = temp->left;
-                        }
+            TreeNode *temp = root;
+            while (true)
+            {
+                if (newNode->data >= temp->data)
+                {
+                    if (temp->right == nullptr)
+                    {
+                        temp->right = newNode;
+                        break;
+                    }
+                    else
+                    {
+                        temp = temp->right;
                     }
                 }
-                break;
+                else
+                {
+                    if (temp->left == nullptr)
+                    {
+                        temp->left = newNode;
+                        break;
+                    }
+                    else
+                    {
+                        temp = temp->left;
+                    }
+                }
             }
-            case 2: {
-                preorder(root);
-                cout << endl;
-                break;
-            }
-            case 3: {
-                postorder(root);
-                cout << endl;
-                break;
-            }
-            case 4: {
-                inorder(root);
-                cout << endl;
-                break;
-            }
-            case 5:
-                return 0;
+            break;
+        }
+        case 2:
+        {
+            cout << "PREORDER" << endl;
+            preorder(root);
+            cout << endl;
+            break;
+        }
+        case 3:
+        {   
+            cout << "POSTORDER" << endl;
+            postorder(root);
+            cout << endl;
+            break;
+        }
+        case 4:
+        {   
+            cout << "INORDER" << endl;
+            inorder(root);
+            cout << endl;
+            break;
+        }
+        case 5:
+            return 0;
         }
     }
 

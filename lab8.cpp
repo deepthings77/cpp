@@ -21,8 +21,6 @@ public:
     }
 };
 
-void inorder(TreeNode *node);
-
 void inorder(TreeNode *node)
 {
     if (node == nullptr)
@@ -33,28 +31,29 @@ void inorder(TreeNode *node)
     cout << node->data << " ";
     inorder(node->right);
 }
-TreeNode* lastRight(TreeNode* root){
-    if(root->right == NULL){
+TreeNode *lastRight(TreeNode *root)
+{
+    if (root->right == NULL)
+    {
         return root;
     }
     return lastRight(root->right);
-
-
 }
-TreeNode *helper(TreeNode *root){
-    if(root->left == NULL){
-        return root->right ;
+TreeNode *helper(TreeNode *root)
+{
+    if (root->left == NULL)
+    {
+        return root->right;
     }
-       if(root->right == NULL){
-        return root->left ;
+    if (root->right == NULL)
+    {
+        return root->left;
     }
-    TreeNode* rightNode = root->right ;
-    TreeNode* last = lastRight(root->left);
+    TreeNode *rightNode = root->right;
+    TreeNode *last = lastRight(root->left);
     last->right = rightNode;
 
     return root->left;
-
-
 }
 
 TreeNode *deleteNode(TreeNode *root, int key)
@@ -67,9 +66,8 @@ TreeNode *deleteNode(TreeNode *root, int key)
     if (root->data == key)
     {
         return helper(root);
-
     }
-    TreeNode* temp = root ;
+    TreeNode *temp = root;
     while (root != NULL)
     {
         if (root->data > key)
@@ -81,7 +79,7 @@ TreeNode *deleteNode(TreeNode *root, int key)
             }
             else
             {
-                root = root->left; 
+                root = root->left;
             }
         }
         else
@@ -97,13 +95,14 @@ TreeNode *deleteNode(TreeNode *root, int key)
                 root = root->right;
             }
         }
-        
     }
-    return temp ;
+    return temp;
 }
 
 int main()
 {
+    cout << "DEEPAK KUMAWAT" << endl
+         << "22BCS034" << endl;
     TreeNode *root = nullptr;
 
     cout << "Enter root: ";
@@ -166,11 +165,12 @@ int main()
             break;
         }
         case 2:
-        {   int key ;
-            cout << "Enter value to be Deleted"<< endl;
+        {
+            int key;
+            cout << "Enter value to be Deleted" << endl;
             cin >> key;
             cout << endl;
-            deleteNode(root , key);
+            deleteNode(root, key);
             break;
         }
         case 3:
