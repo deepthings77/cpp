@@ -8,30 +8,30 @@ private:
     vector<int> heaparr;
 
     void insertHeapMethod(int index) {
-          while (index > 0 && heaparr[parent(index)] < heaparr[index]) {
-            swap(heaparr[index], heaparr[parent(index)]);
-            index = parent(index);
+        int parentIndex = (index - 1) / 2;
+          while (index > 0 && heaparr[parentIndex] < heaparr[index]) {
+            swap(heaparr[index], heaparr[parentIndex]);
+            index = parentIndex;
+            parentIndex = (index - 1) / 2;
         }
     }
 
     void heapify(int index) {
-        int largest = index;
-        int left = leftChild(index);
-        int right = rightChild(index);
+        int largestIndex = index;
+        int leftIndex =  2 * index + 1;
+        int rightIndex =  2 * index + 2;
 
-        if (left < heaparr.size() && heaparr[left] > heaparr[largest])
-            largest = left;
-        if (right < heaparr.size() && heaparr[right] > heaparr[largest])
-            largest = right;
+        if (leftIndex < heaparr.size() && heaparr[leftIndex] > heaparr[largestIndex])
+            largestIndex = leftIndex;
+        if (rightIndex < heaparr.size() && heaparr[rightIndex] > heaparr[largestIndex])
+            largestIndex = rightIndex;
 
-        if (largest != index) {
-            swap(heaparr[index], heaparr[largest]);
-            heapify(largest);
+        if (largestIndex != index) {
+            swap(heaparr[index], heaparr[largestIndex]);
+            heapify(largestIndex);
         }
     }
-    int parent(int index) { return (index - 1) / 2; }
-    int leftChild(int index) { return 2 * index + 1; }
-    int rightChild(int index) { return 2 * index + 2; }
+  
 
 
 public:
@@ -44,7 +44,7 @@ public:
         insertHeapMethod(heaparr.size() - 1);
     }
 
-    int extractMax() {
+    int deleteEle() {
         if (heaparr.empty()) {
             cout << "Queue is empty!" << endl;
             return -1; 
@@ -58,7 +58,7 @@ public:
         return maxElement;
     }
 
-    int getMax() {
+    int topele() {
         if (heaparr.empty()) {
             cout << "Queue is empty!" << endl;
             return -1; 
@@ -105,13 +105,13 @@ int main() {
                 break;
             case 2:
                 if (!pq.isEmpty())
-                    cout << "Max element extracted: " << pq.extractMax() << endl;
+                    cout << "Max element extracted: " << pq.deleteEle()<< endl;
                 else
                     cout << "Queue is empty!\n";
                 break;
             case 3:
                 if (!pq.isEmpty())
-                    cout << "Max element: " << pq.getMax() << endl;
+                    cout << "Max element: " << pq.topele() << endl;
                 else
                     cout << "Queue is empty!\n";
                 break;

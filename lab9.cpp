@@ -10,14 +10,14 @@ struct Node {
     Node(int p, int v) : priority(p), value(v) {}
 };
 
-class MaxPriorityQueue {
+class MaxHeapQueue {
 private:
-    vector<Node> heap;
+    vector<Node> heaparr;
 
-    void heapifyinsert(int index) {
+    void insertHeapMethod(int index) {
         int parent = (index - 1) / 2;
-        while (index > 0 && heap[parent].priority < heap[index].priority) {
-            swap(heap[index], heap[parent]);
+        while (index > 0 && heaparr[parent].priority < heaparr[index].priority) {
+            swap(heaparr[index], heaparr[parent]);
             index = parent;
             parent = (index - 1) / 2;
         }
@@ -28,62 +28,62 @@ private:
         int left = 2 * index + 1;
         int right = 2 * index + 2;
 
-        if (left < heap.size() && heap[left].priority > heap[largest].priority)
+        if (left < heaparr.size() && heaparr[left].priority > heaparr[largest].priority)
             largest = left;
-        if (right < heap.size() && heap[right].priority > heap[largest].priority)
+        if (right < heaparr.size() && heaparr[right].priority > heaparr[largest].priority)
             largest = right;
 
         if (largest != index) {
-            swap(heap[index], heap[largest]);
+            swap(heaparr[index], heaparr[largest]);
             heapify(largest);
         }
     }
 
 public:
-    MaxPriorityQueue() {}
+    MaxHeapQueue() {}
 
     void insert(int priority, int value) {
-        heap.push_back(Node(priority, value));
-        heapifyinsert(heap.size() - 1);
+        heaparr.push_back(Node(priority, value));
+        insertHeapMethod(heaparr.size() - 1);
     }
 
     Node extractMax() {
-        if (heap.empty()) {
+        if (heaparr.empty()) {
             cout << "Queue is empty!" << endl;
             return Node(-1, -1);
         }
 
-        Node maxElement = heap[0];
-        heap[0] = heap.back();
-        heap.pop_back();
+        Node maxElement = heaparr[0];
+        heaparr[0] = heaparr.back();
+        heaparr.pop_back();
         heapify(0);
 
         return maxElement;
     }
 
     Node getMax() {
-        if (heap.empty()) {
+        if (heaparr.empty()) {
             cout << "Queue is empty!" << endl;
             return Node(-1, -1);
         }
 
-        return heap[0];
+        return heaparr[0];
     }
 
     bool isEmpty() {
-        return heap.empty();
+        return heaparr.empty();
     }
 
     void printall() {
-        for (int i = 0; i < heap.size(); i++) {
-            cout << "(" << heap[i].priority << ", " << heap[i].value << ") ";
+        for (int i = 0; i < heaparr.size(); i++) {
+            cout << "(" << heaparr[i].priority << ", " << heaparr[i].value << ") ";
         }
         cout << endl;
     }
 };
 
 int main() {
-    MaxPriorityQueue pq;
+    MaxHeapQueue pq;
     int choice, priority, value;
 
     while (true) {
