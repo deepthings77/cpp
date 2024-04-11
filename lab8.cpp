@@ -56,7 +56,7 @@ TreeNode *helper(TreeNode *root)
     return root->left;
 }
 
-TreeNode *deleteNode(TreeNode *root, int key)
+TreeNode* deleteNode(TreeNode *root, int key)
 {
 
     if (root == NULL)
@@ -170,7 +170,7 @@ int main()
             cout << "Enter value to be Deleted" << endl;
             cin >> key;
             cout << endl;
-            deleteNode(root, key);
+           root =  deleteNode(root, key);
             break;
         }
         case 3:
