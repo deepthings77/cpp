@@ -8,17 +8,16 @@ private:
     vector<int> heap;
 
     void heapifyinsert(int index) {
-       int parent = (index - 1) / 2;
-        while (index > 0 && heap[parent] < heap[index]) {
-            swap(heap[index], heap[parent]);
-            index = parent;
+          while (index > 0 && heap[parent(index)] < heap[index]) {
+            swap(heap[index], heap[parent(index)]);
+            index = parent(index);
         }
     }
 
     void heapify(int index) {
         int largest = index;
-        int left = 2 * index + 1;
-        int right = 2 * index + 2;
+        int left = leftChild(index);
+        int right = rightChild(index);
 
         if (left < heap.size() && heap[left] > heap[largest])
             largest = left;
@@ -30,6 +29,9 @@ private:
             heapify(largest);
         }
     }
+    int parent(int index) { return (index - 1) / 2; }
+    int leftChild(int index) { return 2 * index + 1; }
+    int rightChild(int index) { return 2 * index + 2; }
 
 
 public:
