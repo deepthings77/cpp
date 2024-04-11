@@ -1,6 +1,7 @@
-#include <iostream>
+
 #include <bits/stdc++.h>
 using namespace std;
+
 
 int partition(vector<int> &arr, int low, int high)
 {
@@ -144,8 +145,11 @@ int main()
 
             break;
         case 2:
-            QuickSort(arr, 0, arr.size() - 1);
+          
+    QuickSort(arr, 0, arr.size() - 1);
 
+
+          
             for (int i = 0; i < arr.size(); i++)
             {
                 cout << arr[i] << " ";
