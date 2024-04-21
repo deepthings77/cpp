@@ -43,7 +43,7 @@ void transMat(vector<vector<int>> &adjMat ,vector<vector<int>> &adjRevMat,  int 
 
 
 int main(){
-
+cout << "Deepak Kumawat" << "22BCS034" << endl;
 int n , m ;
 cout << "Enter Total nodes" << endl ;
 cin >> n ;
@@ -59,7 +59,7 @@ vector<int> adjRevList[n+1]; // Reverse Adj List
 vector<vector<int>> adjRevMat(n+1, vector<int> (n+1 , 0));
 
 
-//directed graph
+
 for(int i = 0 ; i < m ; i++){
     int u , v ;
     cout << "Enter Edges "<< endl;
@@ -68,7 +68,7 @@ for(int i = 0 ; i < m ; i++){
     adjMat[u][v] = 1 ;
 }
 
-
+cout << "Adjacency List and Matrix : ";
 printAdjList(adjList , n);
 cout << endl;
 printAdjMat(adjMat , n);
@@ -76,7 +76,7 @@ cout<<endl;
 transList(adjList, adjRevList, n);
 transMat(adjMat , adjRevMat , n);
 
-cout<< " Transpose " <<endl;
+cout<< "Transpose List and matrix: " <<endl;
 printAdjList(adjRevList , n);
 cout<<endl;
 printAdjMat(adjRevMat , n);
